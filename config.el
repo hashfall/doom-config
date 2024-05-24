@@ -3,53 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; live-py-mode
-(require 'live-py-mode)
-
-;; flycheck with quick-peek
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode)
-  :diminish flycheck-mode)
-
-(use-package quick-peek
-  :ensure t)
-
-(use-package flycheck-inline
-  :ensure t
-  :config
-  (global-flycheck-inline-mode)
-  (setq flycheck-inline-display-function
-        (lambda (msg pos)
-          (let* ((ov (quick-peek-overlay-ensure-at pos))
-                 (contents (quick-peek-overlay-contents ov)))
-            (setf (quick-peek-overlay-contents ov)
-                  (concat contents (when contents "\n") msg))
-            (quick-peek-update ov)))
-        flycheck-inline-clear-function #'quick-peek-hide)
-  )
-
-(setq flycheck-inline-display-function
-      (lambda (msg pos err)
-        (let* ((ov (quick-peek-overlay-ensure-at pos))
-               (contents (quick-peek-overlay-contents ov)))
-          (setf (quick-peek-overlay-contents ov)
-                (concat contents (when contents "\n") msg))
-          (quick-peek-update ov)))
-      flycheck-inline-clear-function #'quick-peek-hide)
-
-;; sideline
-(use-package sideline-flycheck
-  :hook (flycheck-mode . sideline-mode)
-  :init
-  (setq sideline-backends-right '(sideline-flycheck)))
-
-(use-package sideline-flycheck :hook (flycheck-mode . sideline-flycheck-setup))
-
-(setq sideline-backends-right '(sideline-lsp sideline-flycheck))
+;; Fancy shit
+(setq display-line-numbers 'relative)
 
 ;; Fix for lsp-mode bug when using gopls (disables lsp-terraform)
 (after! lsp-mode

@@ -8,7 +8,6 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
-(package! quick-peek)
 (package! flycheck-inline)
 (package! sideline)
 (package! sideline-lsp)
