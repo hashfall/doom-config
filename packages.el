@@ -9,9 +9,8 @@
 ;; (package! some-package)
 
 (package! flycheck-inline)
-(package! sideline)
-(package! sideline-lsp)
-(package! sideline-flycheck)
+(package! fia
+  :recipe(:host github :repo "hashfall/fia"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
